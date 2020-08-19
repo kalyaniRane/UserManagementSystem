@@ -31,10 +31,11 @@
                         <p class="lead">Login to your account</p>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="user" placeholder="Username" class="form-control">
+                        <input type="text" name="user" placeholder="Username" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" name="pass" placeholder="Password" class="form-control">
+                        <input type="password" name="pass" placeholder="Password" class="form-control" required
+                               pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{3,}">
                     </div>
                     <div class="content-checkbox">
                         <label class="switch">
