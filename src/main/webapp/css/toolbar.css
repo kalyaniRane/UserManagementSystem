@@ -1,0 +1,76 @@
+.dashboard-header{
+    height: 55px;
+    width: 100%;
+    background-image: linear-gradient(to right, #1F6AD0 , #13B8DE);
+}
+
+.header-title {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    float: left;
+    padding: 0 40px;
+    position: relative;
+    top: 16px;
+    color: #FFFFFF;
+}
+
+.navbar-btn {
+    font-size: 18px;
+    border: none;
+    background: none;
+    outline: none;
+    color: #fff;
+    padding-top: 16px;
+}
+
+.navbar-btn:hover, .navbar-btn:focus {
+    color: #fff;
+    outline:none;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.dashboard-nav-right{
+    padding-top: 13px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 25px;
+    padding-left: 13px;
+    width: 7%;
+    margin-left: 92%;
+}
+
+.dashboard-user-name{
+    color: #FFFFFF;
+}
+
+.dashboard-nav-right-dropdown-menu{
+    display: none;
+    flex-direction: column;
+    z-index: 1;
+    position: absolute;
+    width: 150px;
+    margin-top: 3%;
+}
+
+.dashboard-nav-right-dropdown-menu a {
+    padding: 15px;
+    color: #5e6773;
+    border: 1px solid #D1D6E6;
+    background: white;
+}
+
+.dashboard-nav-right-dropdown-menu a i {
+    color: #a0aeba;
+}
+
+.dashboard-nav-right:hover .dashboard-nav-right-dropdown-menu {
+    display: flex;
+}
+
+.ti-user{
+    padding-right: 15px;
+}
+
+.ti-power-off{
+    padding-right: 15px;
+}

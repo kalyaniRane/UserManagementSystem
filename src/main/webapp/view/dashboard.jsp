@@ -23,7 +23,7 @@
 <body>
 
 <div class="dashboard">
-    Welcome Admin
+    <%@include file="ToolBar.jsp"%>
 </div>
 
 </body>
