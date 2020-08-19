@@ -1,5 +1,9 @@
 package com.usermanagement.service;
 
+
+import com.usermanagement.dto.LoginDto;
+import com.usermanagement.model.LoginDao;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,25 +14,23 @@ import java.io.IOException;
 public class LoginService {
 
     public void userLogin(String userName, String password, HttpServletRequest req, HttpServletResponse resp) {
-
+        LoginDto loginDto=new LoginDto(userName, password);
         HttpSession session=req.getSession();
+        LoginDao loginDao=new LoginDao();
 
-        if(userName.equals("admin") && password.equals("123")){
-            session.setAttribute("userName",userName);
-            try {
+        try{
+            if(loginDao.validate(loginDto)){
+                req.setAttribute("userName",userName);
+                session.setAttribute("user",userName);
                 req.getRequestDispatcher("view/dashboard.jsp").forward(req,resp);
-            } catch (ServletException | IOException e) {
-                e.printStackTrace();
             }
-        }
-        else {
-            session.setAttribute("message","Enter Valid Username and Password");
-            RequestDispatcher reqD= req.getServletContext().getRequestDispatcher("/view/login.jsp");
-            try {
+            else{
+                req.setAttribute("message","Enter Valid UserName and Password");
+                RequestDispatcher reqD= req.getServletContext().getRequestDispatcher("/login");
                 reqD.include(req,resp);
-            } catch (ServletException | IOException e) {
-                e.printStackTrace();
             }
+        }catch (ClassNotFoundException | ServletException | IOException e){
+            e.printStackTrace();
         }
 
     }

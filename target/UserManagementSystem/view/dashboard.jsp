@@ -22,13 +22,6 @@
 </head>
 <body>
 
-<%--<%
-    if (session.getAttribute("userName")==null) {
-        session.setAttribute("message","Please Login");
-        response.sendRedirect("login");
-    }
-%>--%>
-
 <div class="dashboard">
     Welcome Admin
 </div>
