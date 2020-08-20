@@ -1,6 +1,7 @@
 package com.usermanagement.model;
 
 import com.usermanagement.dto.LoginDto;
+import com.usermanagement.dto.UserDto;
 
 import java.sql.*;
 
@@ -45,6 +46,37 @@ public class LoginDao {
                 }
             }
         }
+    }
+
+    public UserDto getUserDetailByEmail(String email) throws ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        String validQuery="select Id,first_name,password,email from user_management.user_details where email=? ";
+
+        try (
+                Connection connection = DriverManager
+                        .getConnection("jdbc:mysql://localhost:3306/?user=root", "root", "admin");
+
+                // Step 2:Create a statement using connection object
+                PreparedStatement preparedStatement = connection
+                        .prepareStatement(validQuery)) {
+
+            preparedStatement.setString(1, email);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if(rs.next()){
+                UserDto userDto=new UserDto(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4));
+
+                return userDto;
+            }
+
+
+        } catch (SQLException e) {
+            // process sql exception
+            printSQLException(e);
+        }
+        return null;
     }
 
 }
