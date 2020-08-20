@@ -51,7 +51,7 @@ public class LoginDao {
     public UserDto getUserDetailByEmail(String email) throws ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        String validQuery="select Id,first_name,password,email from user_management.user_details where email=? ";
+        String validQuery="select Id,first_name,email,password from user_management.user_details where email=? ";
 
         try (
                 Connection connection = DriverManager

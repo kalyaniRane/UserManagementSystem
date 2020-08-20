@@ -13,12 +13,10 @@ public class ForgotPasswordService {
     public String resetPasswordLink(String email) throws ClassNotFoundException {
 
         UserDto userDetails = loginDao.getUserDetailByEmail(email);
+        MailService mailService=new MailService();
+        String message = mailService.sendEmail(userDetails);
 
-        if(userDetails!=null){
-            return "Data Found";
-        }
-
-        return "Data Not Found";
+        return message;
 
     }
 
