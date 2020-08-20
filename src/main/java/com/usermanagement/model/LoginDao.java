@@ -71,7 +71,6 @@ public class LoginDao {
                 return userDto;
             }
 
-
         } catch (SQLException e) {
             // process sql exception
             printSQLException(e);
