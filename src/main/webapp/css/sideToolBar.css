@@ -1,0 +1,96 @@
+.dashboard-side-menu {
+    width: 16%;
+    height: 219%;
+    background: #2B333E;
+    color: white;
+}
+
+.dashboard-side-menu-content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.dashboard-side-menu-content-field {
+    display: flex;
+    align-items: center;
+    height:50px;
+    width:100%;
+    justify-items: left;
+}
+
+.side-menu-details, .tool-bar-submenu a {
+    color: #d6e1f1;
+    padding: 8px 20px;
+    width:100%;
+    cursor: pointer;
+}
+
+.side-menu-details:hover, .side-menu-details:focus, .tool-bar-submenu a:hover, .tool-bar-submenu a:focus {
+    background-color: #272E38;
+    color: #d6e1f1;
+    text-decoration: none;
+}
+
+.side-menu-sub-folder, .user-list {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.side-menu-title-and-icon {
+    height:auto;
+}
+
+.tool-bar-submenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tool-bar-submenu a {
+    display: flex;
+    align-items: center;
+    padding-left: 45px;
+}
+
+.menu-left-icon {
+    margin-right: 7px;
+}
+
+.menu-right-icon {
+    float: right;
+}
+
+.title{
+    font-size: 15px;
+}
+
+.label-success {
+    float:right;
+    padding: 1px 5px;
+    background-color: #41B314;
+    border-radius:2px;
+    color:white;
+    font-size: 12px;
+}
+
+.button-toggle-minified {
+    background: #252c35;
+    color: #d6e1f1;
+    display: block;
+    margin: 20px auto 30px auto;
+    text-align: center;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid #21272f;
+    border-radius: 10px;
+    padding: 4px 12px;
+}
+
+.button-toggle-minified:hover, .button-toggle-minified:focus {
+    color: #d6e1f1;
+    background: #232932;
+    outline:none;
+}
