@@ -20,7 +20,7 @@
                 <h6>User Management</h6>
             </div>
 
-            <button type="button" class="btn-toggle-fullwidth navbar-btn">
+            <button type="button" onclick="toggleSideToolBar()" class="btn-toggle-fullwidth navbar-btn">
                 <i class="ti-arrow-circle-right" id="header-button-icon"></i>
             </button>
 
