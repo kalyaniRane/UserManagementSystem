@@ -30,15 +30,14 @@
 }
 
 .dashboard-nav-right{
-    padding-top: 13px;
     display: flex;
     justify-content: flex-end;
     padding-right: 25px;
     padding-left: 13px;
     width: 7%;
     margin-left: 92%;
+    margin-top: -2%;
 }
-
 .dashboard-user-name{
     color: #FFFFFF;
 }

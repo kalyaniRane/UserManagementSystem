@@ -24,6 +24,9 @@
 
 <div class="dashboard">
     <%@include file="ToolBar.jsp"%>
+    <div class="dashboard-body">
+        <%@include file = "sideToolBar.jsp" %>
+    </div>
 </div>
 
 </body>
