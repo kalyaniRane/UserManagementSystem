@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
     <title>User Management</title>
@@ -26,6 +27,20 @@
     <%@include file="ToolBar.jsp"%>
     <div class="dashboard-body">
         <%@include file = "sideToolBar.jsp" %>
+        <main class="dashboard-main" id="dashboard-main">
+            <div class="dashboard-main-header">
+                <h1 class="page-title">Welcome ${userName}</h1>
+                <p class="page-subtitle">You last logged in on: Aug 24 2020 7:36PM</p>
+                <ul class="user-breadcrumb">
+                    <li>
+                        <a href="dashboard"><i class="fa fa-home"></i>Home</a>
+                    </li>
+                    <li class="active">
+                        Dashboard
+                    </li>
+                </ul>
+            </div>
+        </main>
     </div>
 </div>
 
