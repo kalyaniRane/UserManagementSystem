@@ -66,10 +66,10 @@
     display: flex;
 }
 
-.ti-user{
+#icon-header1{
     padding-right: 15px;
 }
 
-.ti-power-off{
+#icon-header2{
     padding-right: 15px;
 }

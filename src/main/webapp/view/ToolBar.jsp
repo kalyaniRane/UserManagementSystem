@@ -27,8 +27,8 @@
             <div class="dashboard-nav-right">
                 <a class="dashboard-user-name">${userName}</a>
                 <div class="dashboard-nav-right-dropdown-menu">
-                    <a href="#"><i class="ti-user"></i>Profile</a>
-                    <a href="#"><i class="ti-power-off"></i>Logout</a>
+                    <a href="#"><i class="ti-user" id="icon-header1"></i>Profile</a>
+                    <a href="#"><i class="ti-power-off" id="icon-header2"></i>Logout</a>
                 </div>
             </div>
         </div>
