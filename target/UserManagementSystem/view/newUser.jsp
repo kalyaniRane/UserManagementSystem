@@ -38,6 +38,102 @@
                     <span> / New User </span>
                 </div>
             </header>
+            <form class="new-user-form">
+                <div class="new-user-information-profile-image">
+                    <div class="new-user-information-with-header">
+                        <div class="new-user-information-header">
+                            General
+                        </div>
+                        <div class="new-user-information-form">
+                            <div class="new-user-details">
+                                <span>First Name</span>
+                                <input  placeholder="First Name" type="text" required
+                                        name="firstName" class="new-user-input">
+                            </div>
+                            <div class="new-user-details">
+                                <span>Middle Name</span>
+                                <input  placeholder="Middle Name" type="text"
+                                        name="middleName" class="new-user-input">
+                            </div>
+                            <div class="new-user-details">
+                                <span>Last Name</span>
+                                <input  placeholder="Last Name" type="text" required
+                                        name="lastName" class="new-user-input">
+                            </div>
+                        </div>
+                        <div class="new-user-information-form">
+                            <div class="new-user-details">
+                                <span>Date Of Birth</span>
+                                <input placeholder="Date Of Birth" type="date" required name="dateOfBirth" class="new-user-input">
+                            </div>
+                            <div class="new-user-details">
+                                <span>Gender</span>
+                                <select name="gender" class="new-user-input">
+                                    <option>Female</option>
+                                    <option>Male</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+                            <div class="new-user-details">
+                                <span>Country</span>
+                                <select name="country" class="new-user-input">
+                                    <option>India</option>
+                                    <option>Singapore</option>
+                                    <option>Malaysia</option>
+                                    <option>Italy</option>
+                                    <option>Iraq</option>
+                                    <option>Egypt</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="new-user-information-form1">
+                            <div class="new-user-details">
+                                <span>Country Code</span>
+                                <input type="text" placeholder="Country code" required name="countryCode" class="new-user-input">
+                            </div>
+                            <div class="new-user-details">
+                                <span>Mobile Number</span>
+                                <input type="number" placeholder="Mobile Number" required name="mobileNumber" class="new-user-input">
+                            </div>
+                        </div>
+                        <div class="new-user-information-form1">
+                            <div class="new-user-details">
+                                <span>Email</span>
+                                <input required placeholder="Email ID" type="text"
+                                       name="email" class="new-user-input">
+                            </div>
+                            <div class="new-user-details">
+                                <span>Address</span>
+                                <textarea placeholder="Address" name="address" class="new-user-input new-user-address"></textarea>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="new-user-information-form">
+                            <div class="new-user-details">
+                                <span>User Name</span>
+                                <input required placeholder="User Name" type="text" name="userName" class="new-user-input">
+                            </div>
+                            <div class="new-user-details">
+                                <span>Password</span>
+                                <input required name="password"
+                                       class="new-user-input" type="password" placeholder="Password" >
+                            </div>
+                            <div class="new-user-details">
+                                <span>Confirm Password</span>
+                                <input required name="confirmPassword"
+                                       class="new-user-input" type="password" placeholder="Password" >
+                            </div>
+                        </div>
+                        <div class="new-user-details">
+                            <span>User Role</span>
+                            <select name="userRole" class="new-user-input">
+                                <option>User</option>
+                                <option>Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </main>
     </div>
 </div>
