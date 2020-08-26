@@ -28,6 +28,17 @@
     <%@include file = "ToolBar.jsp" %>
     <div class="new-user-body">
         <%@include file = "sideToolBar.jsp" %>
+        <main class="new-user-main" id="main">
+            <header class="new-user-header">
+                <div class="new-user-header-left">
+                    New User
+                </div>
+                <div class="new-user-header-right">
+                    <a href="./view/dashboard.jsp"><i class="fa fa-home"></i>Home</a>
+                    <span> / New User </span>
+                </div>
+            </header>
+        </main>
     </div>
 </div>
 </body>

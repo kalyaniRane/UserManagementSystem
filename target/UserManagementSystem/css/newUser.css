@@ -22,3 +22,34 @@ body {
     height: 93%;
     display: flex;
 }
+
+.new-user-main {
+    width: 85%;
+    height: max-content;
+    background: #F5F6F9;
+    /*    overflow-x: auto;*/
+}
+
+.new-user-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #e3e3e3;
+    background-color: #fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.new-user-header-left {
+    font-size: 18px;
+}
+
+.new-user-header-right a {
+    color: #00aaff;
+    text-decoration:none;
+}
+
+.new-user-header-right a i {
+    font-size: 15px;
+    margin-right: 3px;
+    color: #a0aeba;
+}
