@@ -132,6 +132,38 @@
                             </select>
                         </div>
                     </div>
+                    <div class="new-user-profile">
+                        <div class="new-user-profile-header">Photo</div>
+                        <div class="new-user-profile-details">
+                            <label class="new-user-profile-label">Acceptable image formats are jpg, jpeg, png &amp; gif.</label>
+                            <label class="new-user-profile-label">Maximum image size allowed is 2MB.</label>
+                            <div class="dropify-wrapper">
+                                <div class="dropify-message">
+                                    <span class="file-icon"></span>
+                                    <p>Click here to choose any image</p>
+                                    <p class="dropify-error">Ooops, something wrong appended.</p>
+                                </div>
+                                <div class="dropify-loader" style="display: none;"></div>
+                                <div class="dropify-errors-container"><ul></ul></div>
+                                <input type="file" id="input-file-now" class="dropify" data-show-loader="true"
+                                       data-show-remove="true" data-errors-position="inside"
+                                       data-allowed-file-extensions="png jpeg jpg gif" data-max-file-size="2M">
+                                <button type="button" class="dropify-clear">Remove</button>
+                                <div class="dropify-preview" style="display: none;">
+                                    <span class="dropify-render"></span>
+                                    <div class="dropify-infos">
+                                        <div class="dropify-infos-inner">
+                                            <p class="dropify-filename">
+                                                <span class="file-icon"></span>
+                                                <span class="dropify-filename-inner">SCCL RECPT.pdf</span>
+                                            </p>
+                                            <p class="dropify-infos-message">Drag and drop or click to replace</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
         </main>

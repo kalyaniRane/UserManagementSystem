@@ -119,3 +119,18 @@ body {
 .new-user-address {
     height: 100px;
 }
+
+.new-user-profile{
+    background-color:white;
+    height:350px;
+    border-radius:3px;
+    border: 1px solid #d1d6e6;
+    text-align: left;
+    padding: 10px 10px 5px 10px;
+}
+
+.new-user-profile-label {
+    color: #a0aeba;
+    font-weight: normal;
+    width:320px
+}
