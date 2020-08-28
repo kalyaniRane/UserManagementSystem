@@ -247,7 +247,21 @@
                         </table>
                     </div>
                 </div>
+                <div class="new-user-details-submit-or-reset">
+                    <button class="btn btn-primary" id="new-user-submit-button ">Submit</button>
+                    <button class="btn btn-default" id="new-user-reset-button">Reset</button>
+                </div>
             </form>
+            <footer class="new-user-footer">
+                <div class="container-fluid">
+                    <p class="copyright">
+                        ©
+                        <script type="text/javascript">document.write(new Date().getFullYear())</script>
+                        <a href="#">mimtiyaz - CodeCanyon</a>
+                    </p>
+
+                </div>
+            </footer>
         </main>
     </div>
 </div>

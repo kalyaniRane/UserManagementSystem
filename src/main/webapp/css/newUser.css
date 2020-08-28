@@ -173,3 +173,38 @@ input:checked + .permission-table-input{
     background-color: #FFFFFF;
     color: black;
 }
+
+.new-user-details-submit-or-reset {
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+#new-user-submit-button, #new-user-reset-button {
+    outline: none;
+    border-radius: 3px;
+    padding: 6px 22px;
+    font-size:14px;
+}
+
+#new-user-submit-button {
+    background-color: #00AAFF;
+    border-color: #00a0f0;
+}
+
+#new-user-reset-button {
+    color: #5e6773;
+    border-color: #e4e4e4;
+    background-color: #fafbfc;
+    margin-left: 2%;
+}
+
+.new-user-footer {
+    width: 100%;
+    text-align: right;
+}
+
+.btn-primary{
+    font-size: 14px;
+    width: 82px;
+}
