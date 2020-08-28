@@ -47,39 +47,43 @@
                         <div class="new-user-information-form">
                             <div class="new-user-details">
                                 <span>First Name</span>
-                                <input  placeholder="First Name" type="text" required
+                                <input type="text" required pattern="^[A-Z][a-z]{2,}"
+                                       title="Starting letter must be upper case and followed by lowercase letters with minimum of 3 characters"
                                         name="firstName" class="new-user-input">
                             </div>
                             <div class="new-user-details">
                                 <span>Middle Name</span>
-                                <input  placeholder="Middle Name" type="text"
+                                <input type="text" required pattern="^[A-Z][a-z]{2,}"
+                                       title="Starting letter must be upper case and followed by lowercase letters with minimum of 3 characters"
                                         name="middleName" class="new-user-input">
                             </div>
                             <div class="new-user-details">
                                 <span>Last Name</span>
-                                <input  placeholder="Last Name" type="text" required
+                                <input type="text" required pattern="^[A-Z][a-z]{2,}"
+                                       title="Starting letter must be upper case and followed by lowercase letters with minimum of 3 characters"
                                         name="lastName" class="new-user-input">
                             </div>
                         </div>
                         <div class="new-user-information-form">
                             <div class="new-user-details">
                                 <span>Date Of Birth</span>
-                                <input placeholder="Date Of Birth" type="date" required name="dateOfBirth" class="new-user-input">
+                                <input type="date" required name="dateOfBirth" class="new-user-input">
                             </div>
                             <div class="new-user-details">
                                 <span>Gender</span>
-                                <select name="gender" class="new-user-input">
-                                    <option>Female</option>
+                                <select name="gender" required class="new-user-input">
+                                    <option>--Select--</option>
                                     <option>Male</option>
-                                    <option>Others</option>
+                                    <option>Female</option>
                                 </select>
                             </div>
                             <div class="new-user-details">
                                 <span>Country</span>
-                                <select name="country" class="new-user-input">
-                                    <option>India</option>
+                                <select name="country" required class="new-user-input">
+                                    <option>--Select--</option>
                                     <option>Singapore</option>
                                     <option>Malaysia</option>
+                                    <option>India</option>
                                     <option>Italy</option>
                                     <option>Iraq</option>
                                     <option>Egypt</option>
@@ -89,46 +93,52 @@
                         <div class="new-user-information-form1">
                             <div class="new-user-details">
                                 <span>Country Code</span>
-                                <input type="text" placeholder="Country code" required name="countryCode" class="new-user-input">
+                                <input type="text" required name="countryCode" class="new-user-input">
                             </div>
                             <div class="new-user-details">
                                 <span>Mobile Number</span>
-                                <input type="number" placeholder="Mobile Number" required name="mobileNumber" class="new-user-input">
+                                <input type="number" required name="mobileNumber" pattern="[0-9]{5,10}"
+                                       title="Mobile number must contain 5-10 digits" class="new-user-input">
                             </div>
                         </div>
                         <div class="new-user-information-form1">
                             <div class="new-user-details">
                                 <span>Email</span>
-                                <input required placeholder="Email ID" type="text"
+                                <input required type="text" pattern="^[a-zA-Z0-9]+([._+-][0-9a-zA-Z]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$"
+                                       title="sample email pattern - char@char.com or char@char.com.in"
                                        name="email" class="new-user-input">
                             </div>
                             <div class="new-user-details">
                                 <span>Address</span>
-                                <textarea placeholder="Address" name="address" class="new-user-input new-user-address"></textarea>
+                                <textarea name="address" class="new-user-input new-user-address" required></textarea>
                             </div>
                         </div>
                         <hr>
                         <div class="new-user-information-form">
                             <div class="new-user-details">
                                 <span>User Name</span>
-                                <input required placeholder="User Name" type="text" name="userName" class="new-user-input">
+                                <input required type="text" name="userName" pattern="{5,}" title="Name must contain minimum of 5 characters"
+                                       class="new-user-input">
                             </div>
                             <div class="new-user-details">
                                 <span>Password</span>
-                                <input required name="password"
-                                       class="new-user-input" type="password" placeholder="Password" >
+                                <input required name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
+                                       title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
+                                       class="new-user-input" type="password">
                             </div>
                             <div class="new-user-details">
                                 <span>Confirm Password</span>
-                                <input required name="confirmPassword"
-                                       class="new-user-input" type="password" placeholder="Password" >
+                                <input required name="confirmPassword" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
+                                       title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
+                                       class="new-user-input" type="password">
                             </div>
                         </div>
                         <div class="new-user-details">
                             <span>User Role</span>
-                            <select name="userRole" class="new-user-input">
-                                <option>User</option>
+                            <select name="userRole" required class="new-user-input">
+                                <option>--Select--</option>
                                 <option>Admin</option>
+                                <option>User</option>
                             </select>
                         </div>
                     </div>
@@ -163,6 +173,78 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="new-user-permission">
+                    <div class="new-user-permission-header">Permissions</div>
+                    <div class="new-user-permission-table-div  table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Web Page</th>
+                                <th>
+                                    <input type="checkbox" class="permission-table-input">
+                                    <span>Add</span>
+                                </th>
+                                <th>
+                                    <input type="checkbox" class="permission-table-input">
+                                    <span>Delete</span>
+                                </th>
+                                <th>
+                                    <input type="checkbox" class="permission-table-input">
+                                    <span>Modify</span>
+                                </th>
+                                <th>
+                                    <input type="checkbox" class="permission-table-input">
+                                    <span>Read</span>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Dashboard</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Settings</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Users Information</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Web Page 1</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Web Page 2</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Web Page 3</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </form>
