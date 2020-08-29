@@ -1,18 +1,16 @@
 package com.usermanagement.service;
 
 import com.usermanagement.dto.UserDto;
-import com.usermanagement.model.LoginDao;
-
-import java.io.PrintWriter;
+import com.usermanagement.model.UserDao;
 
 
 public class ForgotPasswordService {
 
-    LoginDao loginDao=new LoginDao();
+    UserDao userDao =new UserDao();
 
     public String resetPasswordLink(String email) throws ClassNotFoundException {
 
-        UserDto userDetails = loginDao.getUserDetailByEmail(email);
+        UserDto userDetails = userDao.getUserDetailByEmail(email);
         MailService mailService=new MailService();
         String message = mailService.sendEmail(userDetails);
 

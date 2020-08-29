@@ -2,7 +2,7 @@ package com.usermanagement.service;
 
 
 import com.usermanagement.dto.LoginDto;
-import com.usermanagement.model.LoginDao;
+import com.usermanagement.model.UserDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,10 +16,10 @@ public class LoginService {
     public void userLogin(String userName, String password, HttpServletRequest req, HttpServletResponse resp) {
         LoginDto loginDto=new LoginDto(userName, password);
         HttpSession session=req.getSession();
-        LoginDao loginDao=new LoginDao();
+        UserDao userDao =new UserDao();
 
         try{
-            if(loginDao.validate(loginDto)){
+            if(userDao.validate(loginDto)){
                 req.setAttribute("userName",userName);
                 session.setAttribute("user",userName);
                 req.getRequestDispatcher("view/dashboard.jsp").forward(req,resp);

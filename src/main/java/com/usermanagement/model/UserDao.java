@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-public class LoginDao {
+public class UserDao {
     Connection connection = new DatabaseConnection().getConnection();
 
     public boolean validate(LoginDto loginDto) throws ClassNotFoundException {
