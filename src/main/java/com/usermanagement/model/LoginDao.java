@@ -3,17 +3,18 @@ package com.usermanagement.model;
 import com.usermanagement.dto.LoginDto;
 import com.usermanagement.dto.UserDto;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class LoginDao {
 
     public boolean validate(LoginDto loginDto) throws ClassNotFoundException {
         boolean status = false;
+        Connection connection = getConnection();
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        try (Connection connection = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/?user=root", "root", "admin");
+        try (
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection
@@ -49,14 +50,11 @@ public class LoginDao {
     }
 
     public UserDto getUserDetailByEmail(String email) throws ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
 
+        Connection connection = getConnection();
         String validQuery="select Id,first_name,email,password from user_management.user_details where email=? ";
 
         try (
-                Connection connection = DriverManager
-                        .getConnection("jdbc:mysql://localhost:3306/?user=root", "root", "admin");
-
                 // Step 2:Create a statement using connection object
                 PreparedStatement preparedStatement = connection
                         .prepareStatement(validQuery)) {
@@ -77,5 +75,21 @@ public class LoginDao {
         }
         return null;
     }
+
+    public Connection getConnection(){
+        try {
+            FileReader fileReader= new FileReader("D:\\Servelet\\UserManagementSystem\\src\\main\\webapp\\WEB-INF\\database.properties");
+            Properties properties=new Properties();
+            properties.load(fileReader);
+            Class.forName(properties.getProperty("driverClassName"));
+            return DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("userName"),
+                    properties.getProperty("password"));
+        } catch (IOException | SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
 }
