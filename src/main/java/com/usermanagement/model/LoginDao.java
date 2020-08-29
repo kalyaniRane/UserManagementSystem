@@ -9,10 +9,10 @@ import java.sql.*;
 import java.util.Properties;
 
 public class LoginDao {
+    Connection connection = new DatabaseConnection().getConnection();
 
     public boolean validate(LoginDto loginDto) throws ClassNotFoundException {
         boolean status = false;
-        Connection connection = getConnection();
 
         try (
 
@@ -51,7 +51,6 @@ public class LoginDao {
 
     public UserDto getUserDetailByEmail(String email) throws ClassNotFoundException {
 
-        Connection connection = getConnection();
         String validQuery="select Id,first_name,email,password from user_management.user_details where email=? ";
 
         try (
@@ -75,21 +74,5 @@ public class LoginDao {
         }
         return null;
     }
-
-    public Connection getConnection(){
-        try {
-            FileReader fileReader= new FileReader("D:\\Servelet\\UserManagementSystem\\src\\main\\webapp\\WEB-INF\\database.properties");
-            Properties properties=new Properties();
-            properties.load(fileReader);
-            Class.forName(properties.getProperty("driverClassName"));
-            return DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("userName"),
-                    properties.getProperty("password"));
-        } catch (IOException | SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
 
 }
