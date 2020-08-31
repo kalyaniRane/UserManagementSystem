@@ -141,6 +141,7 @@
                                 <option>User</option>
                             </select>
                         </div>
+                        <div id="password-message"></div>
                     </div>
                     <div class="new-user-profile">
                         <div class="new-user-profile-header">Photo</div>
