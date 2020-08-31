@@ -1,6 +1,7 @@
 package com.usermanagement.model;
 
 import com.usermanagement.dto.LoginDto;
+import com.usermanagement.dto.NewUserDto;
 import com.usermanagement.dto.UserDto;
 
 import java.io.FileReader;
@@ -49,7 +50,7 @@ public class UserDao {
         }
     }
 
-    public UserDto getUserDetailByEmail(String email) throws ClassNotFoundException {
+    public UserDto getUserDetailByEmail(String email) {
 
         String validQuery="select Id,first_name,email,password from user_management.user_details where email=? ";
 
@@ -63,7 +64,7 @@ public class UserDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             if(rs.next()){
-                UserDto userDto=new UserDto(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4));
+                UserDto userDto=new UserDto(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getString(4));
 
                 return userDto;
             }
@@ -73,6 +74,56 @@ public class UserDao {
             printSQLException(e);
         }
         return null;
+    }
+
+    public UserDto getUserDetailsByUserName(String userName) {
+
+        String validQuery="select id from user_details where username=?";
+
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement(validQuery);
+            preparedStatement.setString(1, userName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                UserDto user = new UserDto();
+                user.setId(Long.valueOf(resultSet.getString(1)));
+                return user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public boolean addUser(NewUserDto newUser) {
+
+        String addUserQuery = "insert into `user_details` (`first_name`, `middle_name`, `last_name`, `date_of_birth`, `gender`, " +
+                "`country`, `country_code`, `phone_number`, `user_profile_image`, `email`, `address` , `username`, `password`," +
+                "`user_role`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(addUserQuery);
+            preparedStatement.setString(1, newUser.getFirstName());
+            preparedStatement.setString(2, newUser.getMiddleName());
+            preparedStatement.setString(3, newUser.getLastName());
+            preparedStatement.setString(4, newUser.getDateOfBirth());
+            preparedStatement.setString(5, newUser.getGender());
+            preparedStatement.setString(6, newUser.getCountry());
+            preparedStatement.setString(7, newUser.getCountryCode());
+            preparedStatement.setString(8, String.valueOf(newUser.getMobileNumber()));
+            preparedStatement.setBlob(9,newUser.getUserImage());
+            preparedStatement.setString(10, newUser.getEmailId());
+            preparedStatement.setString(11, newUser.getAddress());
+            preparedStatement.setString(12, newUser.getUserName());
+            preparedStatement.setString(13, newUser.getPassword());
+            preparedStatement.setString(14, newUser.getUserRole());
+            return preparedStatement.executeUpdate()==1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }

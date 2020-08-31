@@ -38,7 +38,7 @@
                     <span> / New User </span>
                 </div>
             </header>
-            <form class="new-user-form">
+            <form class="new-user-form" action="newUser" method="post" enctype="multipart/form-data">
                 <div class="new-user-information-profile-image">
                     <div class="new-user-information-with-header">
                         <div class="new-user-information-header">
@@ -157,7 +157,7 @@
                                 <div class="dropify-loader" style="display: none;"></div>
                                 <div class="dropify-errors-container"><ul></ul></div>
                                 <input type="file" id="input-file-now" class="dropify" data-show-loader="true"
-                                       data-show-remove="true" data-errors-position="inside"
+                                       data-show-remove="true" data-errors-position="inside" name="new-user-profile-image"
                                        data-allowed-file-extensions="png jpeg jpg gif" data-max-file-size="2M">
                                 <button type="button" class="dropify-clear">Remove</button>
                                 <div class="dropify-preview" style="display: none;">
