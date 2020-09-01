@@ -1,6 +1,7 @@
 package com.usermanagement.controller;
 
 import com.usermanagement.dto.NewUserDto;
+import com.usermanagement.dto.PermissionDto;
 import com.usermanagement.service.NewUserService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -51,6 +52,42 @@ public class NewUser extends HttpServlet {
         newUser.setUserImage(inputStream);
 
         String message = newUserService.addUser(newUser);
+
+        if(message.equals("USER_ADDED")){
+            PermissionDto permissionDto=new PermissionDto();
+            permissionDto.setDashboardAdd(Boolean.parseBoolean(req.getParameter("dashboard-add")));
+            permissionDto.setDashboardDelete(Boolean.parseBoolean(req.getParameter("dashboard-delete")));
+            permissionDto.setDashboardModify(Boolean.parseBoolean(req.getParameter("dashboard-modify")));
+            permissionDto.setDashboardRead(Boolean.parseBoolean(req.getParameter("dashboard-read")));
+
+            permissionDto.setSettingsAdd(Boolean.parseBoolean(req.getParameter("settings-add")));
+            permissionDto.setSettingsDelete(Boolean.parseBoolean(req.getParameter("settings-delete")));
+            permissionDto.setSettingsModify(Boolean.parseBoolean(req.getParameter("settings-modify")));
+            permissionDto.setSettingsRead(Boolean.parseBoolean(req.getParameter("settings-read")));
+
+            permissionDto.setUserInformationAdd(Boolean.parseBoolean(req.getParameter("userinfo-add")));
+            permissionDto.setUserInformationDelete(Boolean.parseBoolean(req.getParameter("userinfo-delete")));
+            permissionDto.setUserInformationModify(Boolean.parseBoolean(req.getParameter("userinfo-modify")));
+            permissionDto.setUserInformationRead(Boolean.parseBoolean(req.getParameter("userinfo-read")));
+
+            permissionDto.setWebpage1Add(Boolean.parseBoolean(req.getParameter("webpage1-add")));
+            permissionDto.setWebpage1Delete(Boolean.parseBoolean(req.getParameter("webpage1-delete")));
+            permissionDto.setWebpage1Modify(Boolean.parseBoolean(req.getParameter("webpage1-modify")));
+            permissionDto.setWebpage1Read(Boolean.parseBoolean(req.getParameter("webpage1-read")));
+
+            permissionDto.setWebpage2Add(Boolean.parseBoolean(req.getParameter("webpage2-add")));
+            permissionDto.setWebpage2Delete(Boolean.parseBoolean(req.getParameter("webpage2-delete")));
+            permissionDto.setWebpage2Modify(Boolean.parseBoolean(req.getParameter("webpage2-modify")));
+            permissionDto.setWebpage2Read(Boolean.parseBoolean(req.getParameter("webpage2-read")));
+
+            permissionDto.setWebpage3Add(Boolean.parseBoolean(req.getParameter("webpage3-add")));
+            permissionDto.setWebpage3Delete(Boolean.parseBoolean(req.getParameter("webpage3-delete")));
+            permissionDto.setWebpage3Modify(Boolean.parseBoolean(req.getParameter("webpage3-modify")));
+            permissionDto.setWebpage3Read(Boolean.parseBoolean(req.getParameter("webpage3-read")));
+
+            newUserService.addPermission(permissionDto,newUser.getUserName());
+        }
+
 
         session.setAttribute("message",message);
         session.setAttribute("newUser",newUser);

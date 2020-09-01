@@ -21,8 +21,8 @@ public class UserDao {
              PreparedStatement preparedStatement = connection
                      .prepareStatement("select * from user_management.user_details where username = ? and password = ? ")) {
 
-            preparedStatement.setString(1, loginDto.userName);
-            preparedStatement.setString(2, loginDto.password);
+            preparedStatement.setString(1, loginDto.getUserName());
+            preparedStatement.setString(2, loginDto.getPassword());
 
             ResultSet rs = preparedStatement.executeQuery();
             status = rs.next();
@@ -52,7 +52,7 @@ public class UserDao {
 
     public UserDto getUserDetailByEmail(String email) {
 
-        String validQuery="select Id,first_name,email,password from user_management.user_details where email=? ";
+        String validQuery="select Id,first_name,password,email from user_management.user_details where email=? ";
 
         try (
                 // Step 2:Create a statement using connection object
@@ -64,14 +64,18 @@ public class UserDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             if(rs.next()){
-                UserDto userDto=new UserDto(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getString(4));
-
+                UserDto userDto=new UserDto();
+                userDto.setId(rs.getLong(1));
+                userDto.setName(rs.getString(2));
+                userDto.setEmail(rs.getString(4));
+                userDto.setPassword(rs.getString(3));
                 return userDto;
             }
 
+
         } catch (SQLException e) {
             // process sql exception
-            printSQLException(e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -125,5 +129,26 @@ public class UserDao {
         }
         return false;
     }
+
+    public boolean addPermission(Long userId,int permissionId,boolean add,boolean delete,boolean modify,boolean read){
+
+        String addPermissions = "insert into `user_permission` (`user_id`, `permission_id`, `add`, `delete`, `modify`, `read`) values (?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement=connection.prepareStatement(addPermissions);
+            preparedStatement.setLong(1,userId);
+            preparedStatement.setInt(2,permissionId);
+            preparedStatement.setBoolean(3,add);
+            preparedStatement.setBoolean(4,delete);
+            preparedStatement.setBoolean(5,modify);
+            preparedStatement.setBoolean(6,read);
+            return preparedStatement.executeUpdate()==1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 }

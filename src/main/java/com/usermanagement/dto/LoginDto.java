@@ -1,14 +1,16 @@
 package com.usermanagement.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
+
+@Getter
+@Setter
 public class LoginDto implements Serializable {
 
-    public String userName;
-    public String password;
+    private String userName;
+    private String password;
 
-    public LoginDto(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
 }

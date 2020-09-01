@@ -23,6 +23,10 @@ public class Login extends HttpServlet {
         String userName = req.getParameter("user");
         String password = req.getParameter("pass");
 
-        loginService.userLogin(userName,password,req,resp);
+        try {
+            loginService.userLogin(userName,password,req,resp);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

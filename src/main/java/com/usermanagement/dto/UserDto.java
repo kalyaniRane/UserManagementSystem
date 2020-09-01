@@ -1,25 +1,24 @@
 package com.usermanagement.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.InputStream;
 import java.io.Serializable;
 
-@NoArgsConstructor
+
 @Getter
 @Setter
 public class UserDto implements Serializable {
 
-    public Long id;
-    public String name;
-    public String email;
-    public String password;
+    private String name;
+    private Long id;
+    private String email;
+    private String password;
+    private String userRole;
+    private String dateOfBirth;
+    private InputStream userProfileImage;
 
-    public UserDto(Long id,String name, String email, String password) {
-        this.name = name;
-        this.id = id;
-        this.email = email;
-        this.password = password;
-    }
+    private String userImage;
+
 }

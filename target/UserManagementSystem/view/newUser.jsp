@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: kalyani
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
     <title>User Management</title>
@@ -23,7 +25,13 @@
 
 </head>
 <body>
-
+<%
+    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+    if (session.getAttribute("userName")==null) {
+        session.setAttribute("message","Please Login");
+        response.sendRedirect("login");
+    }
+%>
 <div class="new-user">
     <%@include file = "ToolBar.jsp" %>
     <div class="new-user-body">
@@ -49,19 +57,19 @@
                                 <span>First Name</span>
                                 <input type="text" required pattern="^[A-Z][a-z]{2,}"
                                        title="Starting letter must be upper case and followed by lowercase letters with minimum of 3 characters"
-                                        name="firstName" class="new-user-input">
+                                       name="firstName" class="new-user-input">
                             </div>
                             <div class="new-user-details">
                                 <span>Middle Name</span>
                                 <input type="text" required pattern="^[A-Z][a-z]{2,}"
                                        title="Starting letter must be upper case and followed by lowercase letters with minimum of 3 characters"
-                                        name="middleName" class="new-user-input">
+                                       name="middleName" class="new-user-input">
                             </div>
                             <div class="new-user-details">
                                 <span>Last Name</span>
                                 <input type="text" required pattern="^[A-Z][a-z]{2,}"
                                        title="Starting letter must be upper case and followed by lowercase letters with minimum of 3 characters"
-                                        name="lastName" class="new-user-input">
+                                       name="lastName" class="new-user-input">
                             </div>
                         </div>
                         <div class="new-user-information-form">
@@ -97,7 +105,7 @@
                             </div>
                             <div class="new-user-details">
                                 <span>Mobile Number</span>
-                                <input type="number" required name="mobileNumber" pattern="[0-9]{5,10}"
+                                <input type="text" required name="mobileNumber" pattern="[0-9]{5,10}"
                                        title="Mobile number must contain 5-10 digits" class="new-user-input">
                             </div>
                         </div>
@@ -136,9 +144,9 @@
                         <div class="new-user-details">
                             <span>User Role</span>
                             <select name="userRole" class="new-user-input" id="new-user-role" required onchange="setPermissions()">
-                                <option>--Select--</option>
-                                <option>Admin</option>
+                                <option value disabled selected>-- Select --</option>
                                 <option>User</option>
+                                <option>Admin</option>
                             </select>
                         </div>
                         <div id="password-message"></div>
@@ -281,7 +289,7 @@
                     </div>
                 </div>
                 <div class="new-user-details-submit-or-reset">
-                    <button class="btn btn-primary" id="new-user-submit-button ">Submit</button>
+                    <button class="btn btn-primary" id="new-user-submit-button " onclick="return checkPassword()">Submit</button>
                     <button class="btn btn-default" id="new-user-reset-button">Reset</button>
                 </div>
             </form>

@@ -41,11 +41,11 @@ public class MailService {
             String subject = "Password Recovery Request";
 
             message.setFrom(new InternetAddress(senderMail));
-            InternetAddress[] toAddresses = { new InternetAddress(userDto.email) };
+            InternetAddress[] toAddresses = { new InternetAddress(userDto.getEmail()) };
             message.setRecipients(Message.RecipientType.TO, toAddresses);
             message.setSubject(subject);
             message.setSentDate(new Date());
-            message.setText(getEmailContent(userDto.name,userDto.email,userDto.password));
+            message.setText(getEmailContent(userDto.getName(),userDto.getEmail(),userDto.getPassword()));
 
             Transport.send(message);
             return "Reset Password Link Has Been Sent";

@@ -13,23 +13,25 @@ import java.io.IOException;
 
 public class LoginService {
 
-    public void userLogin(String userName, String password, HttpServletRequest req, HttpServletResponse resp) {
-        LoginDto loginDto=new LoginDto(userName, password);
+    public void userLogin(String userName, String password, HttpServletRequest req, HttpServletResponse resp) throws ClassNotFoundException {
+        LoginDto loginDto=new LoginDto();
+        loginDto.setUserName(userName);
+        loginDto.setPassword(password);
         HttpSession session=req.getSession();
         UserDao userDao =new UserDao();
 
         try{
             if(userDao.validate(loginDto)){
                 req.setAttribute("userName",userName);
-                session.setAttribute("user",userName);
+                session.setAttribute("userName",loginDto.getUserName());
                 req.getRequestDispatcher("view/dashboard.jsp").forward(req,resp);
             }
             else{
-                req.setAttribute("message","Enter Valid UserName and Password");
-                RequestDispatcher reqD= req.getServletContext().getRequestDispatcher("/login");
+                session.setAttribute("message","Enter Valid UserName and Password");
+                RequestDispatcher reqD= req.getServletContext().getRequestDispatcher("/view/login.jsp");
                 reqD.include(req,resp);
             }
-        }catch (ClassNotFoundException | ServletException | IOException e){
+        }catch (ServletException | IOException e){
             e.printStackTrace();
         }
 
