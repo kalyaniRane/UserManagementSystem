@@ -4,22 +4,27 @@ import com.usermanagement.dto.LoginDto;
 import com.usermanagement.dto.NewUserDto;
 import com.usermanagement.dto.UserDto;
 
-import java.io.FileReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
-import java.util.Properties;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+
 
 public class UserDao {
+
     Connection connection = new DatabaseConnection().getConnection();
 
-    public boolean validate(LoginDto loginDto) throws ClassNotFoundException {
+    public boolean validate(LoginDto loginDto) {
         boolean status = false;
 
         try (
 
-             // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection
-                     .prepareStatement("select * from user_management.user_details where username = ? and password = ? ")) {
+                // Step 2:Create a statement using connection object
+                PreparedStatement preparedStatement = connection
+                        .prepareStatement("select * from user_management.user_details where username = ? and password = ? ")) {
 
             preparedStatement.setString(1, loginDto.getUserName());
             preparedStatement.setString(2, loginDto.getPassword());
@@ -29,25 +34,10 @@ public class UserDao {
 
         } catch (SQLException e) {
             // process sql exception
-            printSQLException(e);
+            e.printStackTrace();
         }
         return status;
 
-    }
-    private void printSQLException(SQLException ex) {
-        for (Throwable e: ex) {
-            if (e instanceof SQLException) {
-                e.printStackTrace(System.err);
-                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                System.err.println("Message: " + e.getMessage());
-                Throwable t = ex.getCause();
-                while (t != null) {
-                    System.out.println("Cause: " + t);
-                    t = t.getCause();
-                }
-            }
-        }
     }
 
     public UserDto getUserDetailByEmail(String email) {
@@ -79,6 +69,7 @@ public class UserDao {
         }
         return null;
     }
+
 
     public UserDto getUserDetailsByUserName(String userName) {
 
@@ -130,6 +121,7 @@ public class UserDao {
         return false;
     }
 
+
     public boolean addPermission(Long userId,int permissionId,boolean add,boolean delete,boolean modify,boolean read){
 
         String addPermissions = "insert into `user_permission` (`user_id`, `permission_id`, `add`, `delete`, `modify`, `read`) values (?,?,?,?,?,?)";
@@ -150,5 +142,48 @@ public class UserDao {
         return false;
     }
 
+    public List<UserDto> getAllUserDetails() {
+        List<UserDto> userDetails=new ArrayList();
 
+        String getUserDetails="select first_name,middle_name,last_name,email,date_of_birth,user_profile_image,user_role,id from user_details";
+
+        PreparedStatement preparedStatement=null;
+        try {
+            preparedStatement=connection.prepareStatement(getUserDetails);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                UserDto userDto=new UserDto();
+
+                userDto.setName(resultSet.getString(1)+" "+resultSet.getString(2)+" "+resultSet.getString(3));
+                userDto.setEmail(resultSet.getString(4));
+                userDto.setDateOfBirth(resultSet.getString(5));
+                userDto.setUserRole(resultSet.getString(7));
+
+                Blob blob =resultSet.getBlob(6);
+                InputStream inputStream = blob.getBinaryStream();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] bytes = new byte[4096];
+                int bytesRead=-1;
+                while ((bytesRead = inputStream.read(bytes)) != -1) {
+                    outputStream.write(bytes, 0, bytesRead);
+                }
+                byte[] imageBytes = outputStream.toByteArray();
+                String userImage = Base64.getEncoder().encodeToString(imageBytes);
+
+
+                inputStream.close();
+                outputStream.close();
+
+                userDto.setUserImage(userImage );
+                userDetails.add(userDto);
+
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return userDetails;
+    }
 }

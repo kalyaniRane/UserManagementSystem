@@ -81,19 +81,29 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                            <%
+                                List<UserDto> userDetails = (List<UserDto>) request.getAttribute("usersDetails");
+                                int index=1;
+                                for(UserDto user : userDetails){
+                            %>
+
                                 <tr>
-                                    <td class="users-list-table-image"><img src="./resources/default-user-image.png"></td>
-                                    <td>Kalyani Sandesh Rane</td>
-                                    <td>kalyanirane19@gmail.com</td>
-                                    <td>05-21-1996</td>
+                                    <td class="users-list-table-image"><img src="data:image/jpg;base64, <%= user.getUserImage()%>"></td>
+                                    <td><%= user.getName() %> </td>
+                                    <td><%= user.getEmail()%> </td>
+                                    <td><%= user.getDateOfBirth()%></td>
                                     <td class="users-status"><label class="users-status-active">Active</label> </td>
-                                    <td>Admin</td>
+                                    <td><%= user.getUserRole()%></td>
                                     <td class="users-account"><i class="ti-unlock text-success"></i></td>
                                     <td class="users-action">
                                         <i class="ti-pencil-alt"></i>
                                         <i class="fa fa-trash text-danger"></i>
                                     </td>
                                 </tr>
+                            <%
+                                index++;}
+                            %>
                             </tbody>
                         </table>
                     </div>
